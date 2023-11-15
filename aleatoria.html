@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoundsTrack</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .reprodutor {
+      border: solid 2px white;
+      width: 95%;
+      position: absolute;
+      bottom: 15px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .botoes {
+      padding: 7px;
+      margin: 5px;
+      border: none;
+      border-radius: 10px;
+      background-color: #0471e3;
+      color: white;
+      font-weight: bold;
+    }
+
+    .container {
+      border: solid 3px white;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .item1 {
+      overflow: hidden;
+      width: 98%;
+      height:98%;
+    }
+
+    #video {
+      position: relative;
+      right: 70px;
+      width: 500px;
+      height: 100%;
+    }
+
+
+    .botoes:hover {
+      padding: 6px;
+    }
+    
+    #sounds {
+      display: block;
+      width: 98%;
+    }
+  </style>
+</head>
+<body>
+  <h1>SoundTracks ^-^</h1>
+  <div class="container">
+    <div class="item1">
+      <video id="video" muted autoplay width="100%" loop poster="img/fuck-you-too.jpg">
+        <source src="" type="video/mp4">
+      </video>
+    </div>
+    <div class="item">
+      <h4 id="nome-da-musica">...</h4>
+    </div>
+  </div>
+  <div class="reprodutor">
+    <audio id="sounds" controls="nodownload">
+      <source src="#" type="audio/mp3">
+    </audio>
+
+    <button class="botoes" onclick="musicaAnterior()">anterior</button>
+
+    <button class="botoes" onclick="tocarMusica()">play</button>
+
+    <button class="botoes" onclick="proximaMusica()">próxima</button>
+  </div>
+
+  <script>
+    const soundsSource = ["aud/A_CYBER_S_WORLD.mp3",
+      "aud/Battle_Against_A_True_Hero.mp3",
+      "aud/Deltarune_Chapter_Spamton.mp3",
+      "aud/Hopes_and_Dreams.mp3",
+      "aud/its_raining_somewhere_else.mp3",
+      "aud/Memory.mp3", 
+      "aud/Snowgrave_route.mp3", 
+      "aud/Next_time.mp3"];
+      
+      const videoSource = ["vid/noelle_and_berdly.mp4",
+      "vid/undyne_imortal.mp4",
+      "vid/Spamton.mp4",
+      "vid/asriel_battle.mp4", 
+      "vid/sans_and_frisk.mp4",
+      "vid/unbrela_memory.mp4", "vid/snow_grave.mp4",
+      "vid/Deltarune_Chapter_2.mp4"];
+      
+    const sounds = document.getElementById('sounds');
+    const nomeDaMusica = document.getElementById('nome-da-musica');
+    let index = 0;
+    const video = document.getElementById('video');
+    
+function mudarVideo() {
+  video.src = videoSource[index];
+}
+
+    function tocarMusica() {
+      sounds.src = soundsSource[index];
+      nomeDaMusica.textContent = soundsSource[index];
+      sounds.play();
+      mudarVideo();
+    }
+
+    function proximaMusica() {
+      if (index >= soundsSource.length) {
+        index = 0;
+        sounds.src = soundsSource[index];
+        nomeDaMusica.textContent = soundsSource[index];
+        sounds.play();
+        mudarVideo();
+      } else {
+        index++;
+        sounds.src = soundsSource[index];
+        nomeDaMusica.textContent = soundsSource[index];
+        sounds.play();
+        mudarVideo()
+      }
+    }
+
+    function musicaAnterior() {
+      if (index <= 0) {
+        index = 0;
+        sounds.src = soundsSource[index];
+        nomeDaMusica.textContent = soundsSource[index];
+        sounds.play();
+        mudarVideo();
+      } else {
+        index--;
+        sounds.src = soundsSource[index];
+        nomeDaMusica.textContent = soundsSource[index];
+        sounds.play();
+        mudarVideo();
+      }
+    }
+  </script>
+</body>
+</html>
